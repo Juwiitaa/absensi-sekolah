@@ -1,0 +1,264 @@
+<!-- <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Absensi SMPN 1 Tinambung</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-4">
+        <div class="text-center mb-8">
+            <img src="assets/logo2.png" alt="Logo Sekolah" class="w-20 mx-auto mb-4">
+            <h1 class="text-2xl font-bold text-gray-800">Absensi Digital</h1>
+            <p class="text-gray-500 text-sm">SMP Negeri 1 Tinambung</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" id="username" class="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Username akun" required>
+            </div>
+            
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2">PIN</label>
+                <input type="password" id="pin" class="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan PIN" required>
+            </div>
+
+            <button type="submit" id="btnLogin" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition duration-300 shadow-md">
+                Masuk
+            </button>
+        </form>
+        
+        <p id="message" class="mt-4 text-center text-red-500 text-sm font-medium hidden">Username atau PIN salah!</p>
+    </div>
+
+    <script src="js/login.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Presensi Digital SMPN 1 Tinambung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0D1B6E;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 32px 80px rgba(13,27,110,0.3);
+        }
+        .logo-wrap {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .logo-wrap img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+        .logo-placeholder {
+            width: 80px;
+            height: 80px;
+            background: #e8eaf6;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #666;
+            font-weight: 600;
+        }
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: #0D1B6E;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 36px;
+        }
+        .field-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .input-wrap {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+        }
+        .input-wrap input {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 14px;
+            font-family: inherit;
+            font-weight: 500;
+            color: #1e293b;
+            background: #f8fafc;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .input-wrap input:focus {
+            border-color: #0D1B6E;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(13,27,110,0.08);
+        }
+        .input-wrap input::placeholder { color: #94a3b8; font-weight: 400; }
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: #0D1B6E;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+        .btn-login:hover { background: #1a2d9e; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(13,27,110,0.3); }
+        .btn-login:active { transform: translateY(0); }
+        .btn-login:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .forgot-wrap {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 18px;
+        }
+        .forgot-wrap a {
+            font-size: 12px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .forgot-wrap a:hover { color: #0D1B6E; }
+        .error-msg {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 16px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo-wrap">
+            <img src="assets/logo2.png" alt="Logo Sekolah" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex'">
+            <div class="logo-placeholder" style="display:none">logo<br>sekolah</div>
+        </div>
+        <h1>Presensi Digital</h1>
+        <p class="subtitle">SMP Negeri 1 Tinambung</p>
+
+        <label class="field-label">Username / NIP</label>
+        <div class="input-wrap">
+            <span class="input-icon">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </span>
+            <input type="text" id="username" placeholder="Masukan Username atau NIP" required>
+        </div>
+
+        <label class="field-label">PIN Keamanan</label>
+        <div class="input-wrap">
+            <span class="input-icon">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input type="password" id="pin" placeholder="Masukan PIN Keamanan" required>
+        </div>
+
+        <button class="btn-login" id="btnLogin" onclick="doLogin()">Masuk</button>
+
+        <div class="forgot-wrap">
+            <a href="#">Lupa Username?</a>
+            <a href="#">Lupa PIN Keamanan?</a>
+        </div>
+        <div class="error-msg" id="errorMsg">Username atau PIN salah!</div>
+    </div>
+
+    <script src="js/login.js"></script>
+    <script>
+        // Override login.js submit handler agar pakai tombol onclick kita
+        async function doLogin() {
+            const username = document.getElementById('username').value;
+            const pin = document.getElementById('pin').value;
+            const btn = document.getElementById('btnLogin');
+            const errMsg = document.getElementById('errorMsg');
+
+            if (!username || !pin) { errMsg.style.display = 'block'; errMsg.innerText = 'Username dan PIN harus diisi!'; return; }
+
+            btn.innerText = 'Memproses...';
+            btn.disabled = true;
+            errMsg.style.display = 'none';
+
+            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyge3Is9gm24r_5nbXnkRlPEyJfOE42SkF1zPVjZTBOETVkotYsHAerjKigcUXJ0OM/exec";
+            try {
+                const res = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'login', username, pin })
+                });
+                const result = await res.json();
+                if (result.status === 'success') {
+                    localStorage.setItem('namaGuru', result.nama);
+                    localStorage.setItem('role', result.role);
+                    localStorage.setItem('nipGuru', result.nip || '');
+                    localStorage.setItem('mapelGuru', result.mapel || '');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    errMsg.style.display = 'block';
+                    errMsg.innerText = 'Username atau PIN salah!';
+                    btn.innerText = 'Masuk';
+                    btn.disabled = false;
+                }
+            } catch(e) {
+                errMsg.style.display = 'block';
+                errMsg.innerText = 'Terjadi kesalahan koneksi ke server!';
+                btn.innerText = 'Masuk';
+                btn.disabled = false;
+            }
+        }
+        document.addEventListener('keydown', e => { if(e.key === 'Enter') doLogin(); });
+    </script>
+</body>
+</html>
