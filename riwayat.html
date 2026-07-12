@@ -166,6 +166,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <style>
+        @media (max-width:768px){
+
+        .stats{
+            display:grid;
+            grid-template-columns:repeat(5,1fr);
+            gap:8px;
+        }
+
+        .stat{
+            padding:12px 6px;
+            border-radius:14px;
+        }
+
+        .value{
+            font-size:22px;
+        }
+
+        .stat{
+            font-size:13px;
+        }
+
+    }
         .table-wrapper {
             width: 100%;
             overflow-x: auto;
@@ -318,6 +340,7 @@
             background: #fee2e2;
             color: #991b1b
         }
+
 
         /* @media(max-width:768px) {
             .stats {
