@@ -146,19 +146,24 @@
         .stat-num { font-size: 16px; font-weight: 800; }
 
         /* TABLE AREA */
-        .table-wrap {
-            max-width: 1100px; 
-            margin: 16px auto 0;
-            padding: 0 24px;
-            background: transparent;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch; 
+        .table-wrap{
+            max-width:1100px;
+            margin:16px auto 0;
+            padding:0 16px;
+            overflow-x:auto;
+            overflow-y:hidden;
+            -webkit-overflow-scrolling:touch;
+            scrollbar-width:thin;
         }
         .table-card {
             background: #fff; border-radius: 20px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden;
         }
-        table { width: 100%; border-collapse: collapse; }
+        table{
+            width:100%;
+            min-width:1100px;
+            border-collapse:collapse;
+        }
         thead tr { background: #0D1B6E; }
         thead th {
             padding: 14px 16px; text-align: center;
@@ -222,17 +227,42 @@
             cursor: pointer; transition: all 0.2s; display: flex;
             align-items: center; justify-content: center; gap: 8px;
         }
+        th,td{
+            white-space:nowrap;
+        }
         .btn-simpan:hover { background: #1a2d9e; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(13,27,110,0.3); }
         .btn-simpan:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
 
-        @media (max-width: 700px) {
-            .topbar { padding: 0 16px; }
-            .info-bar { padding: 12px 16px; }
-            .stats-bar { padding: 16px 16px 0; }
-            .table-wrap { padding: 0 12px; }
-            .info-chips { gap: 8px; }
-            thead th, td { padding: 10px 8px; font-size: 11px; }
+        @media (max-width:700px){
+
+        .topbar{
+            padding:0 16px;
         }
+
+        .info-bar{
+            padding:12px 16px;
+        }
+
+        .stats-bar{
+            padding:16px 16px 0;
+        }
+
+        .table-wrap{
+            padding:0 12px;
+        }
+
+        .info-chips{
+            gap:8px;
+        }
+
+        thead th,
+        td{
+            padding:12px;
+            font-size:13px;
+            white-space:nowrap;
+        }
+
+    }
     </style>
 </head>
 <body>
